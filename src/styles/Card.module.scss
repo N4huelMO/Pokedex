@@ -1,0 +1,40 @@
+.card {
+  transition: transform 0.2s;
+}
+.card:hover {
+  transform: scale(1.05);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+  border-radius: 0.8rem;
+
+  .id {
+    width: 90%;
+    text-align: end;
+
+    p {
+      margin: 0.5rem 0;
+      color: var(--text);
+    }
+  }
+
+  .name {
+    margin: 0.5rem 0;
+    color: var(--text);
+  }
+
+  .img {
+    height: 150px;
+    width: 150px;
+
+    @media (min-width: 1024px) {
+      height: 220px;
+      width: 220px;
+    }
+  }
+}

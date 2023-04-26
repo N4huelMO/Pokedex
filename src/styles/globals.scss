@@ -1,0 +1,42 @@
+* {
+  box-sizing: border-box;
+  outline: none;
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  background-color: #afd5f0;
+}
+
+:root {
+  --text: rgb(0, 0, 0);
+  --type-normal: rgb(168, 168, 120);
+  --type-fire: rgb(240, 128, 48);
+  --type-fighting: rgb(192, 48, 40);
+  --type-water: rgb(104, 144, 240);
+  --type-flying: rgb(168, 144, 240);
+  --type-grass: rgb(120, 200, 80);
+  --type-poison: rgb(160, 64, 160);
+  --type-electric: rgb(248, 208, 48);
+  --type-ground: rgb(224, 192, 104);
+  --type-psychic: rgb(248, 88, 136);
+  --type-rock: rgb(184, 160, 56);
+  --type-ice: rgb(152, 216, 216);
+  --type-bug: rgb(168, 184, 32);
+  --type-dragon: rgb(112, 56, 248);
+  --type-ghost: rgb(112, 88, 152);
+  --type-dark: rgb(112, 88, 72);
+  --type-steel: rgb(184, 184, 208);
+  --type-fairy: rgb(238, 153, 172);
+}
+
+.loading {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
