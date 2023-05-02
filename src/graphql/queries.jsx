@@ -18,14 +18,28 @@ export const POKEMON_QUERY = gql`
           name
         }
       }
-      pokemon_v2_pokemonstats {
-        base_stat
-        pokemon_v2_stat {
+      pokemon_v2_pokemonabilities {
+        pokemon_v2_ability {
           name
         }
       }
-      pokemon_v2_pokemonabilities {
-        pokemon_v2_ability {
+      pokemon_v2_pokemonspecy {
+        pokemon_v2_evolutionchain {
+          pokemon_v2_pokemonspecies {
+            name
+            id
+            pokemon_v2_pokemonspeciesflavortexts(
+              where: { language_id: { _eq: 9 } }
+              limit: 1
+            ) {
+              flavor_text
+            }
+          }
+        }
+      }
+      pokemon_v2_pokemonstats {
+        base_stat
+        pokemon_v2_stat {
           name
         }
       }

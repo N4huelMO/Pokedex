@@ -1,7 +1,5 @@
 import Head from "next/head";
 
-import styles from "@/styles/Home.module.scss";
-
 import Header from "@/components/Header";
 import Pagination from "@/components/Pagination";
 import PokemonsGrid from "@/components/PokemonsGrid";
@@ -60,13 +58,12 @@ const Home = ({ data, page, totalPages }: HomeProps) => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/pokeball.svg" />
       </Head>
+
       <Header />
 
-      <div className={styles.container}>
-        <PokemonsGrid data={data} />
+      <PokemonsGrid data={data} />
 
-        <Pagination page={page} totalPages={totalPages} />
-      </div>
+      <Pagination page={page} totalPages={totalPages} />
     </>
   );
 };

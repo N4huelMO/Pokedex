@@ -5,11 +5,11 @@ import styles from "@/styles/Card.module.scss";
 
 import { CardProps } from "@/interfaces/interfaces";
 
-const Card = ({ id, name, type }: CardProps) => {
-  const capitalizedName = name?.charAt(0).toUpperCase() + name?.slice(1);
+import { capitalizedString } from "@/helpers/capitalizedString";
 
+const Card = ({ id, name, type }: CardProps) => {
   return (
-    <Link href={`#`} className={styles.card}>
+    <Link href={`/pokemon/${id}`} className={styles.card}>
       <div
         className={styles.container}
         style={{ backgroundColor: `var(--type-${type})` }}
@@ -22,10 +22,10 @@ const Card = ({ id, name, type }: CardProps) => {
           className={styles.img}
           alt="Pokemon Sprite"
           src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`}
-          width={250}
-          height={250}
+          width={300}
+          height={300}
         ></Image>
-        <h3 className={styles.name}>{capitalizedName}</h3>
+        <h3 className={styles.name}>{capitalizedString(name)}</h3>
       </div>
     </Link>
   );
