@@ -9,10 +9,13 @@ import Link from "next/link";
 
 import { idRefact } from "@/helpers/idRefact";
 import { useResize } from "@/helpers/resize";
-
-import weaknessResistances from "../../../data/weaknessResistances.json";
+import { getTypeInfo } from "@/helpers/weaknessResistances";
 
 const PokeInfoStats = ({ stats, evolution, types, id }: PokeInfoStats) => {
+  const [initialValues, setInitialValues] = useState<Array<number | string>>([
+    0, 0, 0, 0, 0, 0,
+  ]);
+
   const evolutions = evolution.filter((evo) => evo.id_evo !== id);
 
   const windowWith = useResize();
@@ -32,36 +35,21 @@ const PokeInfoStats = ({ stats, evolution, types, id }: PokeInfoStats) => {
     "speed": "spd",
   };
 
-  const typeChart: {
-    [key: string]: { weaknesses: string[]; resistances: string[] };
-  } = weaknessResistances;
+  const { filterWeaknesses, filterResistances } = getTypeInfo(types);
 
-  const getTypeInfo = (
-    pokemonTypes: string[]
-  ): { filterWeaknesses: string[]; filterResistances: string[] } => {
-    let weaknesses: string[] = [];
-    let resistances: string[] = [];
-
-    for (const type of pokemonTypes) {
-      const typeInfo = typeChart[type.toLowerCase()];
-
-      if (typeInfo) {
-        weaknesses = weaknesses.concat(typeInfo.weaknesses);
-        resistances = resistances.concat(typeInfo.resistances);
-      }
-    }
-
-    const filterWeaknesses = weaknesses.filter(
-      (type, i) => !resistances.includes(type) && weaknesses.indexOf(type) === i
-    );
-    const filterResistances = resistances.filter(
-      (type, i) => !weaknesses.includes(type) && resistances.indexOf(type) === i
+  const calculateInitialValues = () => {
+    const baseStatsArray = stats.map(
+      (stat) => `${(stat.base_stat / MAX_STAT) * 100}%`
     );
 
-    return { filterWeaknesses, filterResistances };
+    setTimeout(() => {
+      setInitialValues(baseStatsArray);
+    }, 100);
   };
 
-  const { filterWeaknesses, filterResistances } = getTypeInfo(types);
+  useEffect(() => {
+    calculateInitialValues();
+  }, []);
 
   return (
     <div
@@ -74,15 +62,7 @@ const PokeInfoStats = ({ stats, evolution, types, id }: PokeInfoStats) => {
       <div className={styles.baseStats}>
         <h3 className={styles.headerStats}>Base Stats</h3>
         {stats.map((stat, i) => {
-          const [initial, setInitial] = useState<number | string>(0);
-
           const { name, base_stat } = stat;
-
-          useEffect(() => {
-            setTimeout(() => {
-              setInitial(`${(base_stat / MAX_STAT) * 100}%`);
-            }, 100);
-          }, [id]);
 
           return (
             <div key={i} className={styles.item}>
@@ -102,7 +82,7 @@ const PokeInfoStats = ({ stats, evolution, types, id }: PokeInfoStats) => {
                     style={{
                       backgroundColor: `var(--type-${types[0]})`,
                       opacity: "1",
-                      width: initial,
+                      width: initialValues[i],
                     }}
                   ></div>
                 </div>
@@ -129,7 +109,7 @@ const PokeInfoStats = ({ stats, evolution, types, id }: PokeInfoStats) => {
         >
           {evolutions.sort((a, b) => Number(b.is_baby) - Number(a.is_baby))
             .length === 0 ? (
-            <p>This pokemon don't have evolutions</p>
+            <p>This pokemon don&apos;t have evolutions</p>
           ) : (
             <>
               {evolutions.map((evos, i) => {
@@ -162,7 +142,7 @@ const PokeInfoStats = ({ stats, evolution, types, id }: PokeInfoStats) => {
             <h3>Weakness</h3>
 
             {filterWeaknesses.length === 0 ? (
-              <p>This pokemon don't have Weakness</p>
+              <p>This pokemon don&apos;t have Weakness</p>
             ) : (
               <div className={styles.grid}>
                 {filterWeaknesses.map((weak, i) => (
@@ -178,7 +158,7 @@ const PokeInfoStats = ({ stats, evolution, types, id }: PokeInfoStats) => {
             <h3>Resistances</h3>
 
             {filterResistances.length === 0 ? (
-              <p>This pokemon don't have resistences</p>
+              <p>This pokemon don&apos;t have resistences</p>
             ) : (
               <div className={styles.grid}>
                 {filterResistances.map((resistance, i) => (

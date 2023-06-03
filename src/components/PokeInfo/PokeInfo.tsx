@@ -27,7 +27,7 @@ const PokeInfo = ({ pokemon }: PokemonInfo) => {
           <link rel="icon" href="/pokeball.svg" />
         </Head>
         <div className={styles.error}>
-          <p>Pokemon ID doesn't exist</p>
+          <p>Pokemon ID doesn&apos;t exist</p>
 
           <Link href="/">
             <button className={styles.buttonError}>Back to home</button>
