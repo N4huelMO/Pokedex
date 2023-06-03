@@ -5,27 +5,38 @@ import styles from "@/styles/Card.module.scss";
 
 import { CardProps } from "@/interfaces/interfaces";
 
-import { capitalizedString } from "@/helpers/capitalizedString";
+import { useRouter } from "next/router";
+import { idRefact } from "../helpers/idRefact";
 
 const Card = ({ id, name, type }: CardProps) => {
+  const router = useRouter();
+
+  const { filter, page } = router.query;
+
   return (
-    <Link href={`/pokemon/${id}`} className={styles.card}>
+    <Link
+      href={{
+        pathname: `/pokemon/${id}`,
+        query: `${filter ? `page=${page}&filter=${filter}` : ""}`,
+      }}
+      className={styles.card}
+    >
       <div
         className={styles.container}
         style={{ backgroundColor: `var(--type-${type})` }}
       >
-        <div className={styles.id}>
-          <p>{`#${id <= 9 ? "00" : id >= 10 && id <= 99 ? "0" : ""}${id}`}</p>
-        </div>
+        <div className={styles.id}>{idRefact(id)}</div>
         <Image
-          priority={true}
+          priority
           className={styles.img}
           alt="Pokemon Sprite"
           src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`}
-          width={300}
-          height={300}
-        ></Image>
-        <h3 className={styles.name}>{capitalizedString(name)}</h3>
+          width={205}
+          height={205}
+        />
+        <h3 className={styles.name}>{`${
+          name.indexOf("-") >= 6 ? name.split("-")[0] : name
+        }`}</h3>
       </div>
     </Link>
   );

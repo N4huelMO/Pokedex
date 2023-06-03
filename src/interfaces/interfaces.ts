@@ -17,7 +17,7 @@ export interface CardPokemon {
 export interface CardProps {
   id: number;
   name: string;
-  type: string;
+  type: string[];
 }
 
 export interface Pagination {
@@ -64,9 +64,45 @@ export interface PokemonEvolution {
 export interface PokemonSpecies {
   name: string;
   id: number;
+  is_baby: boolean;
   pokemon_v2_pokemonspeciesflavortexts: { flavor_text?: string }[];
 }
 
 export interface PokemonInfo {
   pokemon?: Array<Pokemon>;
+}
+
+export interface PokeInfoCard {
+  prevPokemon?: number | null;
+  nextPokemon?: number | null;
+  id: number;
+  types: string[];
+  height: number;
+  weight: number;
+  abilities: string[];
+}
+
+export interface PokeInfoStats {
+  stats: { base_stat: number; name: string }[];
+  evolution: {
+    name: string;
+    id_evo: number;
+    is_baby: boolean;
+    flavor_text: string;
+  }[];
+  types: string[];
+  id: number;
+}
+
+export interface PokeInfoHeader {
+  prevPokemon?: number | null;
+  nextPokemon?: number | null;
+  id: number;
+  types: string[];
+  name: string;
+}
+
+export interface Filter {
+  name?: string;
+  id?: number;
 }

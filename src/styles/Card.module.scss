@@ -18,26 +18,25 @@
   .id {
     width: 90%;
     text-align: end;
-
-    p {
-      margin: 0.5rem 0;
-      color: var(--text);
-    }
+    margin: 0.5rem 0;
+    font-weight: 500;
+    color: var(--text);
   }
 
   .name {
     margin: 0.5rem 0;
     color: var(--text);
+    text-transform: capitalize;
   }
 
   .img {
-    height: 120px;
-    width: 120px;
-    filter: drop-shadow(0 0 0.1rem black);
+    height: 7.5rem;
+    width: 7.5rem;
+    filter: drop-shadow(0 0 0.2rem black);
 
     @media (min-width: 1024px) {
-      height: 220px;
-      width: 220px;
+      height: 13.75rem;
+      width: 13.75rem;
     }
   }
 }

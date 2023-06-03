@@ -1,0 +1,85 @@
+{
+  "steel": {
+    "weaknesses": ["fire", "fighting", "ground"],
+    "resistances": [
+      "steel",
+      "bug",
+      "dragon",
+      "fairy",
+      "ice",
+      "normal",
+      "grass",
+      "psychic",
+      "rock",
+      "flying"
+    ]
+  },
+  "water": {
+    "weaknesses": ["electric", "grass"],
+    "resistances": ["steel", "water", "fire", "ice"]
+  },
+  "bug": {
+    "weaknesses": ["fire", "rock", "flying"],
+    "resistances": ["fighting", "grass", "ground"]
+  },
+  "dragon": {
+    "weaknesses": ["dragon", "fairy", "ice"],
+    "resistances": ["water", "electric", "fire", "grass"]
+  },
+  "electric": {
+    "weaknesses": ["ground"],
+    "resistances": ["steel", "electric", "flying"]
+  },
+  "ghost": {
+    "weaknesses": ["ghost", "dark"],
+    "resistances": ["bug", "poison"]
+  },
+  "fire": {
+    "weaknesses": ["water", "rock", "ground"],
+    "resistances": ["steel", "bug", "fire", "fairy", "ice", "grass"]
+  },
+  "fairy": {
+    "weaknesses": ["steel", "poison"],
+    "resistances": ["bug", "fighting", "dark"]
+  },
+  "ice": {
+    "weaknesses": ["steel", "fire", "fighting", "rock"],
+    "resistances": ["ice"]
+  },
+  "fighting": {
+    "weaknesses": ["fairy", "psychic", "flying"],
+    "resistances": ["bug", "rock", "dark"]
+  },
+  "normal": {
+    "weaknesses": ["fighting"],
+    "resistances": []
+  },
+  "grass": {
+    "weaknesses": ["bug", "fire", "ice", "poison", "flying"],
+    "resistances": ["water", "electric", "grass", "ground"]
+  },
+  "psychic": {
+    "weaknesses": ["bug", "ghost", "dark"],
+    "resistances": ["fighting", "psychic"]
+  },
+  "rock": {
+    "weaknesses": ["steel", "water", "fighting", "grass", "ground"],
+    "resistances": ["fire", "normal", "poison", "flying"]
+  },
+  "dark": {
+    "weaknesses": ["bug", "fairy", "fighting"],
+    "resistances": ["ghost", "dark"]
+  },
+  "ground": {
+    "weaknesses": ["water", "ice", "grass"],
+    "resistances": ["rock", "poison"]
+  },
+  "poison": {
+    "weaknesses": ["psychic", "ground"],
+    "resistances": ["bug", "fairy", "fighting", "grass", "poison"]
+  },
+  "flying": {
+    "weaknesses": ["electric", "ice", "rock"],
+    "resistances": ["bug", "fighting", "grass"]
+  }
+}

@@ -1,4 +1,4 @@
-import styles from "@/styles/GridPokemons.module.scss";
+import styles from "@/styles/PokemonsGrid.module.scss";
 
 import Card from "@/components/Card";
 
@@ -13,7 +13,7 @@ const PokemonsGrid = ({ data }: CardPokemon) => {
         });
 
         return (
-          <Card key={poke.id} id={poke.id} name={poke.name} type={types[0]} />
+          <Card key={poke.id} id={poke.id} name={poke.name} type={types} />
         );
       })}
     </div>

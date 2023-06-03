@@ -1,14 +1,21 @@
-import PokeInfo from "@/components/PokeInfo";
+import PokeInfo from "@/components/PokeInfo/PokeInfo";
+
 import { POKEMON_QUERY } from "@/graphql/queries";
-import { useRouter } from "next/router";
+
 import { useQuery } from "@apollo/client";
+
 import { Pokemon } from "@/interfaces/interfaces";
+
+import logo from "../../../public/pokeball.svg";
+
 import Head from "next/head";
+import { useRouter } from "next/router";
+import Image from "next/image";
 
 const Pokedex = () => {
   const router = useRouter();
 
-  const id = router.query.id;
+  const { id } = router.query;
 
   const { data, loading } = useQuery(POKEMON_QUERY, { variables: { id } });
 
@@ -30,7 +37,9 @@ const Pokedex = () => {
             <link rel="icon" href="/pokeball.svg" />
           </Head>
 
-          <p className="loading">Loading...</p>
+          <div className="loading">
+            <Image priority alt="logo" src={logo} height={150} width={150} />
+          </div>
         </>
       ) : (
         <PokeInfo pokemon={pokemon} />

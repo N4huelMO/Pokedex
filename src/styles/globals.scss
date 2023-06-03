@@ -1,22 +1,6 @@
-* {
-  box-sizing: border-box;
-  outline: none;
-  text-decoration: none;
-  margin: 0;
-  padding: 0;
-}
-
-html,
-body {
-  background-color: #afd5f0;
-}
-
-a {
-  color: #000;
-}
-
 :root {
-  --text: rgb(0, 0, 0);
+  --text: #1b262c;
+  --bg: #e0f2fe;
   --type-normal: rgb(168, 168, 120);
   --type-fire: rgb(240, 128, 48);
   --type-fighting: rgb(192, 48, 40);
@@ -24,7 +8,7 @@ a {
   --type-flying: rgb(168, 144, 240);
   --type-grass: rgb(120, 200, 80);
   --type-poison: rgb(160, 64, 160);
-  --type-electric: rgb(248, 208, 48);
+  --type-electric: rgb(223, 187, 46);
   --type-ground: rgb(224, 192, 104);
   --type-psychic: rgb(248, 88, 136);
   --type-rock: rgb(184, 160, 56);
@@ -37,10 +21,43 @@ a {
   --type-fairy: rgb(238, 153, 172);
 }
 
+* {
+  box-sizing: border-box;
+  outline: none;
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  background-color: var(--bg);
+}
+
+a {
+  color: #000;
+}
+
 .loading {
   margin: 0;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 1.5rem;
+
+  img {
+    animation: spinner 1s linear infinite;
+    filter: drop-shadow(0 0 0.1rem black);
+  }
+}
+
+@keyframes spinner {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

@@ -1,18 +1,27 @@
 .header {
-  padding: 1rem 0;
-
-  .container {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-  }
+  padding: 1.5rem 0;
 
   .logo {
     display: flex;
     align-items: center;
-    justify-content: center;
     gap: 1rem;
-    color: var(--text);
+    width: fit-content;
+    margin: 0 auto;
+    color: #1b262c;
     text-transform: uppercase;
+  }
+
+  .components {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 0.5rem;
+  }
+
+  @media (min-width: 480px) {
+    .components {
+      flex-direction: row;
+    }
   }
 }

@@ -4,9 +4,17 @@ import Header from "@/components/Header";
 import Pagination from "@/components/Pagination";
 import PokemonsGrid from "@/components/PokemonsGrid";
 
+import { useEffect, useState } from "react";
+import Image from "next/image";
+import logo from "../../public/pokeball.svg";
+
 import { GetServerSideProps } from "next";
 
-import { client, POKEMONS_QUERY } from "@/graphql/queries";
+import {
+  client,
+  POKEMONS_FILTER_QUERY,
+  POKEMONS_QUERY,
+} from "@/graphql/queries";
 
 import { HomeProps, Pokemons } from "@/interfaces/interfaces";
 
@@ -14,10 +22,47 @@ export const getServerSideProps: GetServerSideProps<HomeProps> = async (
   context
 ) => {
   const { page = "1" } = context.query;
-  const pageNumber = Number(page) || 1;
+
+  let pageNumber = Number(page) || 1;
 
   const limit = 16;
-  const offset = (pageNumber - 1) * limit;
+  let offset = (pageNumber - 1) * limit;
+
+  if (offset < 0) {
+    pageNumber = 1;
+
+    return {
+      redirect: {
+        destination: `/?page=${pageNumber}`,
+        permanent: false,
+      },
+    };
+  }
+
+  if (context.query.filter) {
+    const type = context.query.filter;
+
+    const { data } = await client.query({
+      query: POKEMONS_FILTER_QUERY,
+      variables: { type, limit, offset },
+    });
+
+    const pokemons = data.pokemon_v2_pokemon.map((poke: Pokemons) => {
+      return poke;
+    });
+
+    const totalPokemons = data.pokemon_v2_pokemon_aggregate.aggregate.count;
+
+    const totalPages = Math.ceil(totalPokemons / limit);
+
+    return {
+      props: {
+        data: pokemons,
+        page: pageNumber,
+        totalPages: totalPages,
+      },
+    };
+  }
 
   const { data } = await client.query({
     query: POKEMONS_QUERY,
@@ -49,7 +94,17 @@ export const getServerSideProps: GetServerSideProps<HomeProps> = async (
   };
 };
 
-const Home = ({ data, page, totalPages }: HomeProps) => {
+const Home = ({ data, totalPages, page }: HomeProps) => {
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    setIsLoading(true);
+
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
+  }, [data]);
+
   return (
     <>
       <Head>
@@ -61,9 +116,16 @@ const Home = ({ data, page, totalPages }: HomeProps) => {
 
       <Header />
 
-      <PokemonsGrid data={data} />
-
-      <Pagination page={page} totalPages={totalPages} />
+      {isLoading ? (
+        <div className="loading">
+          <Image priority alt="logo" src={logo} height={150} width={150} />
+        </div>
+      ) : (
+        <>
+          <PokemonsGrid data={data} />
+          <Pagination page={page} totalPages={totalPages} />
+        </>
+      )}
     </>
   );
 };
