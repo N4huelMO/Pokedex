@@ -62,7 +62,7 @@ const SearchBar = () => {
       }
 
       if (/^[a-zA-Z]+$/.test(e)) {
-        getPokemonByString(e);
+        getPokemonByString(e.toLowerCase());
 
         return;
       }
