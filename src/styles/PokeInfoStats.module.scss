@@ -10,10 +10,10 @@
     font-size: 0.875rem;
     text-transform: lowercase;
     padding: 0.5rem 1rem;
-  }
 
-  .text::first-letter {
-    text-transform: uppercase;
+    &::first-letter {
+      text-transform: uppercase;
+    }
   }
 
   .baseStats {
@@ -71,10 +71,10 @@
           }
         }
       }
-    }
 
-    .item:last-child {
-      margin-bottom: 1rem;
+      &:last-child {
+        margin-bottom: 1rem;
+      }
     }
   }
 
@@ -93,11 +93,11 @@
       img {
         filter: drop-shadow(0 0 0.25rem black);
         transition: all 0.4s ease;
-      }
 
-      img:hover {
-        filter: drop-shadow(0 0 0.5rem black);
-        scale: 125%;
+        &:hover {
+          filter: drop-shadow(0 0 0.5rem black);
+          scale: 125%;
+        }
       }
 
       .namePoke {

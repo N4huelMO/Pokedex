@@ -11,11 +11,11 @@
     font-weight: bold;
     cursor: pointer;
     transition: all 0.3s;
-  }
 
-  button:hover {
-    color: var(--bg);
-    background-color: #1f343f;
+    &:hover {
+      color: var(--bg);
+      background-color: #1f343f;
+    }
   }
 
   .active {
@@ -45,11 +45,11 @@
       margin: 0.3rem 0.1rem;
       border-radius: 0.8rem;
       transition: all 0.3s;
-    }
 
-    .type:hover {
-      cursor: pointer;
-      background-color: #315264;
+      &:hover {
+        cursor: pointer;
+        background-color: #315264;
+      }
     }
   }
 
