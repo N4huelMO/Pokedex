@@ -22,6 +22,7 @@ export const getTypeInfo = (
   const filterWeaknesses = weaknesses.filter(
     (type, i) => !resistances.includes(type) && weaknesses.indexOf(type) === i
   );
+
   const filterResistances = resistances.filter(
     (type, i) => !weaknesses.includes(type) && resistances.indexOf(type) === i
   );
